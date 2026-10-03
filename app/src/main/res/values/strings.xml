@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">FitTracker</string>
+    <string name="logo_description">Logo de FitTracker con un pulso de actividad</string>
+    <string name="welcome_title">Activa\ntu día.</string>
+    <string name="welcome_message">Registra tus entrenamientos, cuida tus hábitos y avanza hacia tu meta diaria.</string>
+    <string name="welcome_badge">CADA SESIÓN CUENTA</string>
+    <string name="start">¡Vamos a entrenar!</string>
+    <string name="welcome_footer">Un paso a la vez. Todos los días.</string>
+    <string name="main_title">Tu próxima\nsesión.</string>
+    <string name="main_subtitle">Cada esfuerzo cuenta. Construye una rutina que te haga sentir bien.</string>
+    <string name="main_hint">Registra tus entrenamientos, hábitos y esfuerzo en un solo lugar.</string>
+    <string name="back">Volver al inicio</string>
+</resources>

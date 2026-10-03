@@ -1,0 +1,13 @@
+<resources>
+    <color name="purple">#6839D8</color>
+    <color name="purple_dark">#2B1759</color>
+    <color name="orange">#FFAC78</color>
+    <color name="lime">#DBF58A</color>
+    <color name="lavender">#EFE8FC</color>
+    <color name="background">#F7F4FC</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="text_primary">#291B46</color>
+    <color name="text_secondary">#675C79</color>
+    <color name="border">#E6DFF0</color>
+    <color name="welcome_muted">#E5DDF9</color>
+</resources>

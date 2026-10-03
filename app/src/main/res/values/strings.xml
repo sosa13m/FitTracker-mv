@@ -6,8 +6,26 @@
     <string name="welcome_badge">CADA SESIÓN CUENTA</string>
     <string name="start">¡Vamos a entrenar!</string>
     <string name="welcome_footer">Un paso a la vez. Todos los días.</string>
-    <string name="main_title">Tu próxima\nsesión.</string>
-    <string name="main_subtitle">Cada esfuerzo cuenta. Construye una rutina que te haga sentir bien.</string>
-    <string name="main_hint">Registra tus entrenamientos, hábitos y esfuerzo en un solo lugar.</string>
     <string name="back">Volver al inicio</string>
+    <string name="main_title">¡Vamos por más!</string>
+    <string name="main_subtitle">Construye una rutina que te haga sentir bien.</string>
+    <string name="training_type">Tipo de entrenamiento</string>
+    <string-array name="training_options">
+        <item>Selecciona un entrenamiento</item>
+        <item>Fuerza</item>
+        <item>Cardio</item>
+        <item>Yoga</item>
+        <item>Calistenia</item>
+    </string-array>
+    <string name="intensity">Intensidad</string>
+    <string name="low">Baja</string>
+    <string name="medium">Media</string>
+    <string name="high">Alta</string>
+    <string name="new_session">Nueva sesión</string>
+    <string name="today_badge">HOY</string>
+    <string name="training_section">Tu entrenamiento</string>
+    <string name="step_one">01</string>
+    <string name="selection_title">Tu elección</string>
+    <string name="selection_pending">Selecciona entrenamiento e intensidad.</string>
+    <string name="selection_summary">%1$s · Intensidad %2$s</string>
 </resources>

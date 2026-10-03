@@ -1,73 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/root"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:padding="24dp">
-
-            <ImageView
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:src="@drawable/ic_fittracker"
-                android:contentDescription="@null"
-                android:importantForAccessibility="no" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/app_name"
-                android:textColor="@color/purple"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/Widget.FitTracker.Title"
-                android:layout_marginTop="12dp"
-                android:text="@string/main_title"
-                android:textSize="38sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="@string/main_subtitle"
-                android:textColor="@color/text_secondary"
-                android:textSize="16sp"
-                android:lineSpacingExtra="4dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/bg_panel"
-                android:padding="20dp"
-                android:text="@string/main_hint"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp"
-                android:lineSpacingExtra="4dp" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnBack"
-                style="@style/Widget.FitTracker.SecondaryButton"
-                android:layout_marginTop="24dp"
-                android:text="@string/back" />
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent">
+    <ScrollView android:id="@+id/formScroll" android:layout_width="0dp" android:layout_height="0dp" android:fillViewport="true" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@drawable/ic_fittracker" android:contentDescription="@null" android:importantForAccessibility="no" />
+                <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="@string/app_name" android:textColor="@color/purple" android:textSize="16sp" android:textStyle="bold" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/today_badge" android:textColor="@color/purple" android:textSize="11sp" android:textStyle="bold" android:background="@drawable/bg_step" android:padding="10dp" />
+            </LinearLayout>
+            <TextView style="@style/Widget.FitTracker.Title" android:text="@string/main_title" android:layout_marginTop="18dp" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/main_subtitle" android:textColor="@color/text_secondary" android:textSize="15sp" android:layout_marginTop="6dp" />
+            <TextView style="@style/Widget.FitTracker.Label" android:text="@string/new_session" android:textSize="22sp" android:layout_marginTop="26dp" android:layout_marginBottom="12dp" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/bg_panel" android:padding="16dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                    <TextView style="@style/Widget.FitTracker.StepNumber" android:text="@string/step_one" />
+                    <TextView style="@style/Widget.FitTracker.Label" android:layout_width="0dp" android:layout_weight="1" android:layout_marginStart="10dp" android:layout_marginTop="0dp" android:layout_marginBottom="0dp" android:text="@string/training_section" />
+                </LinearLayout>
+                <TextView style="@style/Widget.FitTracker.Label" android:text="@string/training_type" android:labelFor="@id/spinnerTraining" />
+                <Spinner android:id="@+id/spinnerTraining" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="52dp" android:background="@drawable/bg_input" android:spinnerMode="dropdown" />
+                <TextView style="@style/Widget.FitTracker.Label" android:text="@string/intensity" />
+                <RadioGroup android:id="@+id/radioIntensity" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                    <RadioButton android:id="@+id/radioLow" style="@style/Widget.FitTracker.Choice" android:text="@string/low" />
+                    <RadioButton android:id="@+id/radioMedium" style="@style/Widget.FitTracker.Choice" android:text="@string/medium" />
+                    <RadioButton android:id="@+id/radioHigh" style="@style/Widget.FitTracker.Choice" android:text="@string/high" />
+                </RadioGroup>
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/bg_goal" android:padding="18dp" android:layout_marginTop="16dp">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/selection_title" android:textSize="18sp" android:textStyle="bold" android:textColor="@color/text_primary" />
+                <TextView android:id="@+id/txtSelection" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/selection_pending" android:textSize="15sp" android:textColor="@color/text_primary" android:accessibilityLiveRegion="polite" />
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnBack" style="@style/Widget.FitTracker.SecondaryButton" android:layout_marginTop="16dp" android:text="@string/back" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

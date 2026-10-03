@@ -28,4 +28,19 @@
     <string name="selection_title">Tu elección</string>
     <string name="selection_pending">Selecciona entrenamiento e intensidad.</string>
     <string name="selection_summary">%1$s · Intensidad %2$s</string>
+    <string name="habits_section">Cuida tu rutina</string>
+    <string name="step_two">02</string>
+    <string name="habits">Hábitos completados</string>
+    <string name="warmup">Calentamiento realizado</string>
+    <string name="hydration">Hidratación adecuada</string>
+    <string name="stretching">Estiramiento final</string>
+    <string name="duration">Duración en minutos</string>
+    <string name="duration_help">Ingresa entre 1 y 600 minutos. Ejemplo: 30.</string>
+    <string name="duration_pending">Duración: pendiente</string>
+    <string name="duration_preview">Duración: %1$s min</string>
+    <string name="no_habits">Sin hábitos marcados</string>
+    <string name="habits_prefix">Hábitos: %1$s</string>
+    <string name="habit_warmup">calentamiento</string>
+    <string name="habit_hydration">hidratación</string>
+    <string name="habit_stretching">estiramiento</string>
 </resources>

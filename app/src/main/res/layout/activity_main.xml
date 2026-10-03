@@ -23,9 +23,24 @@
                     <RadioButton android:id="@+id/radioHigh" style="@style/Widget.FitTracker.Choice" android:text="@string/high" />
                 </RadioGroup>
             </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/bg_panel" android:padding="16dp" android:layout_marginTop="12dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                    <TextView style="@style/Widget.FitTracker.StepNumber" android:text="@string/step_two"/>
+                    <TextView style="@style/Widget.FitTracker.Label" android:layout_width="0dp" android:layout_weight="1" android:layout_marginStart="10dp" android:layout_marginTop="0dp" android:layout_marginBottom="0dp" android:text="@string/habits_section"/>
+                </LinearLayout>
+                <TextView style="@style/Widget.FitTracker.Label" android:text="@string/habits"/>
+                <CheckBox android:id="@+id/checkWarmup" style="@style/Widget.FitTracker.Choice" android:text="@string/warmup"/>
+                <CheckBox android:id="@+id/checkHydration" style="@style/Widget.FitTracker.Choice" android:text="@string/hydration"/>
+                <CheckBox android:id="@+id/checkStretching" style="@style/Widget.FitTracker.Choice" android:text="@string/stretching"/>
+                <TextView style="@style/Widget.FitTracker.Label" android:text="@string/duration" android:labelFor="@id/editMinutes"/>
+                <EditText android:id="@+id/editMinutes" android:layout_width="match_parent" android:layout_height="56dp" android:background="@drawable/bg_input" android:padding="12dp" android:textColor="@color/text_primary" android:textSize="18sp" android:inputType="number" android:maxLength="3" android:singleLine="true" android:imeOptions="actionDone" android:importantForAutofill="no"/>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/duration_help" android:textSize="12sp" android:textColor="@color/text_secondary" android:layout_marginTop="6dp"/>
+            </LinearLayout>
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/bg_goal" android:padding="18dp" android:layout_marginTop="16dp">
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/selection_title" android:textSize="18sp" android:textStyle="bold" android:textColor="@color/text_primary" />
                 <TextView android:id="@+id/txtSelection" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/selection_pending" android:textSize="15sp" android:textColor="@color/text_primary" android:accessibilityLiveRegion="polite" />
+                <TextView android:id="@+id/txtHabits" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/no_habits" android:textSize="14sp" android:textColor="@color/text_primary" android:accessibilityLiveRegion="polite" />
+                <TextView android:id="@+id/txtDuration" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/duration_pending" android:textSize="14sp" android:textColor="@color/text_primary" android:accessibilityLiveRegion="polite" />
             </LinearLayout>
             <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnBack" style="@style/Widget.FitTracker.SecondaryButton" android:layout_marginTop="16dp" android:text="@string/back" />
         </LinearLayout>

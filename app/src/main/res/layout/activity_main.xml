@@ -36,12 +36,23 @@
                 <EditText android:id="@+id/editMinutes" android:layout_width="match_parent" android:layout_height="56dp" android:background="@drawable/bg_input" android:padding="12dp" android:textColor="@color/text_primary" android:textSize="18sp" android:inputType="number" android:maxLength="3" android:singleLine="true" android:imeOptions="actionDone" android:importantForAutofill="no"/>
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/duration_help" android:textSize="12sp" android:textColor="@color/text_secondary" android:layout_marginTop="6dp"/>
             </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/bg_panel" android:padding="16dp" android:layout_marginTop="12dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                    <TextView style="@style/Widget.FitTracker.StepNumber" android:text="@string/step_three"/>
+                    <TextView style="@style/Widget.FitTracker.Label" android:layout_width="0dp" android:layout_weight="1" android:layout_marginStart="10dp" android:layout_marginTop="0dp" android:layout_marginBottom="0dp" android:text="@string/effort_label" android:labelFor="@id/ratingEffort"/>
+                </LinearLayout>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/effort_help" android:textColor="@color/text_secondary" android:textSize="13sp" android:layout_marginTop="14dp"/>
+                <RatingBar android:id="@+id/ratingEffort" android:layout_width="wrap_content" android:layout_height="wrap_content" android:numStars="5" android:stepSize="1" android:rating="0" android:isIndicator="false" android:progressTint="@color/effort" android:layout_marginTop="6dp"/>
+                <TextView android:id="@+id/txtEffort" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/effort_unset" android:textColor="@color/text_secondary" android:textSize="13sp" android:accessibilityLiveRegion="polite" android:layout_marginTop="4dp"/>
+            </LinearLayout>
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/bg_goal" android:padding="18dp" android:layout_marginTop="16dp">
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/selection_title" android:textSize="18sp" android:textStyle="bold" android:textColor="@color/text_primary" />
                 <TextView android:id="@+id/txtSelection" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/selection_pending" android:textSize="15sp" android:textColor="@color/text_primary" android:accessibilityLiveRegion="polite" />
                 <TextView android:id="@+id/txtHabits" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/no_habits" android:textSize="14sp" android:textColor="@color/text_primary" android:accessibilityLiveRegion="polite" />
                 <TextView android:id="@+id/txtDuration" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/duration_pending" android:textSize="14sp" android:textColor="@color/text_primary" android:accessibilityLiveRegion="polite" />
+                <TextView android:id="@+id/txtSessionCount" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:textSize="14sp" android:textStyle="bold" android:textColor="@color/text_primary" android:accessibilityLiveRegion="polite" />
             </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnSave" style="@style/Widget.FitTracker.PrimaryButton" android:layout_marginTop="20dp" android:text="@string/save_session" />
             <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnBack" style="@style/Widget.FitTracker.SecondaryButton" android:layout_marginTop="16dp" android:text="@string/back" />
         </LinearLayout>
     </ScrollView>

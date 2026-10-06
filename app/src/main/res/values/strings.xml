@@ -43,4 +43,15 @@
     <string name="habit_warmup">calentamiento</string>
     <string name="habit_hydration">hidratación</string>
     <string name="habit_stretching">estiramiento</string>
+    <string name="step_three">03</string>
+    <string name="effort_label">Esfuerzo percibido</string>
+    <string name="effort_help">De 1 (muy suave) a 5 (muy exigente).</string>
+    <string name="effort_unset">Selecciona de 1 a 5 estrellas</string>
+    <string name="effort_value">%1$d de 5 estrellas</string>
+    <string name="save_session">Registrar sesión</string>
+    <string name="saved">Sesión registrada</string>
+    <plurals name="session_count">
+        <item quantity="one">%1$d sesión registrada</item>
+        <item quantity="other">%1$d sesiones registradas</item>
+    </plurals>
 </resources>

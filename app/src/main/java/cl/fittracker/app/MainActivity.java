@@ -1,19 +1,24 @@
 package cl.fittracker.app;
 
 import android.os.Bundle;
+import android.os.Build;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class MainActivity extends BaseActivity {
     private Spinner training;
@@ -21,11 +26,15 @@ public class MainActivity extends BaseActivity {
     private TextView selection, habitsSummary, durationSummary;
     private CheckBox warmup, hydration, stretching;
     private EditText minutes;
+    private RatingBar effort;
+    private TextView effortText, sessionCount;
+    private ArrayList<WorkoutSession> sessions=new ArrayList<>();
 
     @Override protected void onCreate(Bundle state) {
         super.onCreate(state);
         setContentView(R.layout.activity_main);
         prepareInsets(false);
+        if(state!=null) restoreSessions(state);
         training=findViewById(R.id.spinnerTraining);
         intensity=findViewById(R.id.radioIntensity);
         selection=findViewById(R.id.txtSelection);
@@ -35,6 +44,9 @@ public class MainActivity extends BaseActivity {
         minutes=findViewById(R.id.editMinutes);
         habitsSummary=findViewById(R.id.txtHabits);
         durationSummary=findViewById(R.id.txtDuration);
+        effort=findViewById(R.id.ratingEffort);
+        effortText=findViewById(R.id.txtEffort);
+        sessionCount=findViewById(R.id.txtSessionCount);
 
         ArrayAdapter<CharSequence> options=ArrayAdapter.createFromResource(this,
             R.array.training_options,R.layout.spinner_training);
@@ -55,7 +67,11 @@ public class MainActivity extends BaseActivity {
             @Override public void onTextChanged(CharSequence text,int start,int before,int count) { }
             @Override public void afterTextChanged(Editable text) { updateSelection(); }
         });
+        effort.setOnRatingBarChangeListener((bar,rating,fromUser) -> updateEffortLabel());
+        findViewById(R.id.btnSave).setOnClickListener(v -> registerSession());
         updateSelection();
+        updateEffortLabel();
+        updateSessionCount();
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
     }
 
@@ -75,8 +91,64 @@ public class MainActivity extends BaseActivity {
             : getString(R.string.duration_preview,duration));
     }
 
+    private void updateEffortLabel() {
+        effortText.setText(effort.getRating()==0 ? getString(R.string.effort_unset)
+            : getString(R.string.effort_value,(int)effort.getRating()));
+    }
+
+    private void registerSession() {
+        String type=training.getSelectedItemPosition()>0 ? training.getSelectedItem().toString() : "";
+        RadioButton choice=findViewById(intensity.getCheckedRadioButtonId());
+        String level=choice==null ? "" : choice.getText().toString();
+        int duration;
+        try { duration=Integer.parseInt(minutes.getText().toString().trim()); }
+        catch(NumberFormatException exception) {
+            minutes.setError(getString(R.string.duration_help));
+            minutes.requestFocus();
+            return;
+        }
+        if(duration<1 || duration>600) {
+            minutes.setError(getString(R.string.duration_help));
+            minutes.requestFocus();
+            return;
+        }
+        try { SessionValidator.validate(type,level,duration,effort.getRating()); }
+        catch(IllegalArgumentException exception) {
+            Toast.makeText(this,exception.getMessage(),Toast.LENGTH_LONG).show();
+            return;
+        }
+        sessions.add(0,new WorkoutSession(UUID.randomUUID().toString(),type,level,duration,
+            warmup.isChecked(),hydration.isChecked(),stretching.isChecked(),effort.getRating(),System.currentTimeMillis()));
+        updateSessionCount();
+        minutes.setText(""); minutes.setError(null); effort.setRating(0); intensity.clearCheck();
+        training.setSelection(0); warmup.setChecked(false); hydration.setChecked(false); stretching.setChecked(false);
+        InputMethodManager keyboard=(InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        if(keyboard!=null) keyboard.hideSoftInputFromWindow(minutes.getWindowToken(),0);
+        minutes.clearFocus();
+        updateSelection();
+        Toast.makeText(this,R.string.saved,Toast.LENGTH_SHORT).show();
+    }
+
+    private void updateSessionCount() {
+        sessionCount.setText(getResources().getQuantityString(R.plurals.session_count,sessions.size(),sessions.size()));
+    }
+
+    @SuppressWarnings({"unchecked","deprecation"})
+    private void restoreSessions(Bundle state) {
+        ArrayList<WorkoutSession> restored=Build.VERSION.SDK_INT>=33
+            ? (ArrayList<WorkoutSession>)state.getSerializable("sessions",ArrayList.class)
+            : (ArrayList<WorkoutSession>)state.getSerializable("sessions");
+        if(restored!=null) sessions=restored;
+    }
+
+    @Override protected void onSaveInstanceState(Bundle state) {
+        super.onSaveInstanceState(state);
+        state.putSerializable("sessions",sessions);
+    }
+
     @Override protected void onRestoreInstanceState(Bundle state) {
         super.onRestoreInstanceState(state);
         updateSelection();
+        updateEffortLabel();
     }
 }

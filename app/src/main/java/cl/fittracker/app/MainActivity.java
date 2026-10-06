@@ -1,7 +1,6 @@
 package cl.fittracker.app;
 
 import android.os.Bundle;
-import android.os.Build;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -33,12 +32,14 @@ public class MainActivity extends BaseActivity {
     private TextView progressMinutes, progressPercent;
     private TextView effortText, sessionCount;
     private ArrayList<WorkoutSession> sessions=new ArrayList<>();
+    private SessionStore store;
 
     @Override protected void onCreate(Bundle state) {
         super.onCreate(state);
         setContentView(R.layout.activity_main);
         prepareInsets(false);
-        if(state!=null) restoreSessions(state);
+        store=new SessionStore(this);
+        sessions=store.all();
         training=findViewById(R.id.spinnerTraining);
         intensity=findViewById(R.id.radioIntensity);
         selection=findViewById(R.id.txtSelection);
@@ -127,6 +128,7 @@ public class MainActivity extends BaseActivity {
         }
         sessions.add(0,new WorkoutSession(UUID.randomUUID().toString(),type,level,duration,
             warmup.isChecked(),hydration.isChecked(),stretching.isChecked(),effort.getRating(),System.currentTimeMillis()));
+        store.save(sessions);
         updateSessionCount();
         updateProgress();
         minutes.setText(""); minutes.setError(null); effort.setRating(0); intensity.clearCheck();
@@ -149,24 +151,15 @@ public class MainActivity extends BaseActivity {
 
     @Override protected void onResume() {
         super.onResume();
-        if(progress!=null) updateProgress();
+        if(store!=null) {
+            sessions=store.all();
+            updateSessionCount();
+            updateProgress();
+        }
     }
 
     private void updateSessionCount() {
         sessionCount.setText(getResources().getQuantityString(R.plurals.session_count,sessions.size(),sessions.size()));
-    }
-
-    @SuppressWarnings({"unchecked","deprecation"})
-    private void restoreSessions(Bundle state) {
-        ArrayList<WorkoutSession> restored=Build.VERSION.SDK_INT>=33
-            ? (ArrayList<WorkoutSession>)state.getSerializable("sessions",ArrayList.class)
-            : (ArrayList<WorkoutSession>)state.getSerializable("sessions");
-        if(restored!=null) sessions=restored;
-    }
-
-    @Override protected void onSaveInstanceState(Bundle state) {
-        super.onSaveInstanceState(state);
-        state.putSerializable("sessions",sessions);
     }
 
     @Override protected void onRestoreInstanceState(Bundle state) {

@@ -54,4 +54,10 @@
         <item quantity="one">%1$d sesión registrada</item>
         <item quantity="other">%1$d sesiones registradas</item>
     </plurals>
+    <string name="daily_goal">Tu meta de hoy</string>
+    <string name="progress_minutes">%1$d de %2$d min</string>
+    <string name="progress_percent">%1$d%% completado</string>
+    <string name="metric_minutes">Minutos de hoy</string>
+    <string name="metric_progress">Avance</string>
+    <string name="goal_note">Meta de ejemplo: 60 minutos diarios.</string>
 </resources>

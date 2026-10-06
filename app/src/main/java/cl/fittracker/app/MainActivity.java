@@ -14,11 +14,13 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.TimeZone;
 
 public class MainActivity extends BaseActivity {
     private Spinner training;
@@ -27,6 +29,8 @@ public class MainActivity extends BaseActivity {
     private CheckBox warmup, hydration, stretching;
     private EditText minutes;
     private RatingBar effort;
+    private ProgressBar progress;
+    private TextView progressMinutes, progressPercent;
     private TextView effortText, sessionCount;
     private ArrayList<WorkoutSession> sessions=new ArrayList<>();
 
@@ -47,6 +51,9 @@ public class MainActivity extends BaseActivity {
         effort=findViewById(R.id.ratingEffort);
         effortText=findViewById(R.id.txtEffort);
         sessionCount=findViewById(R.id.txtSessionCount);
+        progress=findViewById(R.id.progressDaily);
+        progressMinutes=findViewById(R.id.txtProgressMinutes);
+        progressPercent=findViewById(R.id.txtProgressPercent);
 
         ArrayAdapter<CharSequence> options=ArrayAdapter.createFromResource(this,
             R.array.training_options,R.layout.spinner_training);
@@ -72,6 +79,7 @@ public class MainActivity extends BaseActivity {
         updateSelection();
         updateEffortLabel();
         updateSessionCount();
+        updateProgress();
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
     }
 
@@ -120,6 +128,7 @@ public class MainActivity extends BaseActivity {
         sessions.add(0,new WorkoutSession(UUID.randomUUID().toString(),type,level,duration,
             warmup.isChecked(),hydration.isChecked(),stretching.isChecked(),effort.getRating(),System.currentTimeMillis()));
         updateSessionCount();
+        updateProgress();
         minutes.setText(""); minutes.setError(null); effort.setRating(0); intensity.clearCheck();
         training.setSelection(0); warmup.setChecked(false); hydration.setChecked(false); stretching.setChecked(false);
         InputMethodManager keyboard=(InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
@@ -127,6 +136,20 @@ public class MainActivity extends BaseActivity {
         minutes.clearFocus();
         updateSelection();
         Toast.makeText(this,R.string.saved,Toast.LENGTH_SHORT).show();
+    }
+
+    private void updateProgress() {
+        int total=DailyGoal.minutesToday(sessions,System.currentTimeMillis(),TimeZone.getDefault());
+        int percentage=DailyGoal.percent(total);
+        progress.setProgress(percentage);
+        progress.setContentDescription(getString(R.string.progress_percent,percentage));
+        progressMinutes.setText(getString(R.string.progress_minutes,total,DailyGoal.GOAL_MINUTES));
+        progressPercent.setText(getString(R.string.progress_percent,percentage));
+    }
+
+    @Override protected void onResume() {
+        super.onResume();
+        if(progress!=null) updateProgress();
     }
 
     private void updateSessionCount() {

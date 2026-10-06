@@ -1,6 +1,7 @@
 package cl.fittracker.app;
 
 import android.os.Bundle;
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -77,6 +78,8 @@ public class MainActivity extends BaseActivity {
         });
         effort.setOnRatingBarChangeListener((bar,rating,fromUser) -> updateEffortLabel());
         findViewById(R.id.btnSave).setOnClickListener(v -> registerSession());
+        findViewById(R.id.btnHistory).setOnClickListener(v ->
+            startActivity(new Intent(this,HistoryActivity.class)));
         updateSelection();
         updateEffortLabel();
         updateSessionCount();

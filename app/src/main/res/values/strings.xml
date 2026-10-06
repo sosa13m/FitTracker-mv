@@ -60,4 +60,13 @@
     <string name="metric_minutes">Minutos de hoy</string>
     <string name="metric_progress">Avance</string>
     <string name="goal_note">Meta de ejemplo: 60 minutos diarios.</string>
+    <string name="history">Ver mis sesiones</string>
+    <string name="history_title">Mis sesiones</string>
+    <string name="history_back">‹ Volver</string>
+    <string name="history_kicker">CADA SESIÓN ES UN AVANCE</string>
+    <string name="empty_history">Tu historial empieza aquí.
+Registra tu primera sesión y celebra cada avance.</string>
+    <string name="session_duration">%1$d min</string>
+    <string name="session_details">%1$s · Intensidad %2$s</string>
+    <string name="session_effort">Esfuerzo: %1$d de 5</string>
 </resources>

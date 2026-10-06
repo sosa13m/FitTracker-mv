@@ -68,6 +68,7 @@
                 <TextView android:id="@+id/txtSessionCount" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:textSize="14sp" android:textStyle="bold" android:textColor="@color/text_primary" android:accessibilityLiveRegion="polite" />
             </LinearLayout>
             <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnSave" style="@style/Widget.FitTracker.PrimaryButton" android:layout_marginTop="20dp" android:text="@string/save_session" />
+            <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnHistory" style="@style/Widget.FitTracker.SecondaryButton" android:layout_marginTop="10dp" android:text="@string/history"/>
             <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnBack" style="@style/Widget.FitTracker.SecondaryButton" android:layout_marginTop="16dp" android:text="@string/back" />
         </LinearLayout>
     </ScrollView>

@@ -69,4 +69,9 @@ Registra tu primera sesión y celebra cada avance.</string>
     <string name="session_duration">%1$d min</string>
     <string name="session_details">%1$s · Intensidad %2$s</string>
     <string name="session_effort">Esfuerzo: %1$d de 5</string>
+    <string name="delete_session">Eliminar sesión de %1$s</string>
+    <string name="delete_title">Eliminar sesión</string>
+    <string name="delete_message">La sesión se quitará del historial y su progreso diario se recalculará.</string>
+    <string name="delete_confirm">Eliminar</string>
+    <string name="cancel">Cancelar</string>
 </resources>

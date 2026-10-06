@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="12dp" android:orientation="vertical" android:background="@drawable/bg_panel" android:padding="16dp">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:baselineAligned="false">
         <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
             <TextView android:id="@+id/txtSessionType" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/purple" android:textStyle="bold" android:textSize="22sp"/>
             <TextView android:id="@+id/txtSessionMinutes" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/text_primary" android:textStyle="bold" android:textSize="14sp" android:background="@drawable/bg_badge" android:paddingStart="10dp" android:paddingEnd="10dp" android:paddingTop="5dp" android:paddingBottom="5dp" android:layout_marginTop="8dp"/>
         </LinearLayout>
+        <ImageButton android:id="@+id/btnDeleteSession" android:layout_width="48dp" android:layout_height="48dp" android:background="@drawable/bg_button_secondary" android:src="@drawable/ic_delete" android:contentDescription="@string/delete_title" android:padding="13dp"/>
     </LinearLayout>
     <TextView android:id="@+id/txtSessionDetails" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/text_secondary" android:textSize="13sp" android:layout_marginTop="14dp"/>
     <TextView android:id="@+id/txtSessionHabits" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/text_secondary" android:textSize="13sp" android:lineSpacingExtra="3dp" android:layout_marginTop="6dp"/>

@@ -44,4 +44,9 @@ public final class SessionStore {
         } catch(JSONException exception) { throw new IllegalStateException("No se pudo guardar la sesión",exception); }
         preferences.edit().putString("sessions",entries.toString()).apply();
     }
+    public void remove(String id) {
+        ArrayList<WorkoutSession> sessions=all();
+        sessions.removeIf(session -> session.id.equals(id));
+        save(sessions);
+    }
 }
